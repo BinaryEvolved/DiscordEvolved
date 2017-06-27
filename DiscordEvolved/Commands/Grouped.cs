@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
+using Microsoft.Win32;
 
 namespace DiscordEvolved.Commands
 {
     [Group("admin")] // let's mark this class as a command group
     [Description("Administrative commands.")] // give it a description for help purposes
     [Hidden] // let's hide this from the eyes of curious users
-    [RequirePermissions(Permissions.ManageGuild)] // and restrict this to users who have appropriate permissions
+    //[RequirePermissions(Permissions.ManageGuild)] // and restrict this to users who have appropriate permissions
     class GroupedCommands
     {
         
