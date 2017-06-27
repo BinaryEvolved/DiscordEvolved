@@ -1,10 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using DiscordEvolved.Commands;
 using DSharpPlus;
-using Newtonsoft.Json;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Exceptions;
 
