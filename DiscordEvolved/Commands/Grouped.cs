@@ -62,5 +62,34 @@ namespace DiscordEvolved.Commands
                     await ctx.RespondAsync(emoji.ToString());
                 }
             }
+
+        [Command("resetnick"), Description("Resets someone's nickname to their default value."),
+         RequirePermissions(Permissions.ManageNicknames)]
+        public async Task ResetNickname(CommandContext ctx, [Description("Member to change the nickname for.")] DiscordMember member)
+        {
+            // let's trigger a typing indicator to let
+            // users know we're working
+            await ctx.TriggerTypingAsync();
+
+            try
+            {
+                // let's change the nickname, and tell the 
+                // audit logs who did it.
+                await member.ModifyAsync("", reason: $"Changed by {ctx.User.Username} ({ctx.User.Id})");
+
+                // let's make a simple response.
+                var emoji = DiscordEmoji.FromName(ctx.Client, ":+1:");
+
+                // and respond with it.
+                await ctx.RespondAsync(emoji.ToString());
+            }
+            catch (Exception)
+            {
+                // oh no, something failed, let the invoker now
+                var emoji = DiscordEmoji.FromName(ctx.Client, ":-1:");
+                await ctx.RespondAsync(emoji.ToString());
+            }
+        }
+
         }
     }
