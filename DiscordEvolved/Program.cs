@@ -64,9 +64,9 @@ namespace DiscordEvolved
             this.Commands.CommandErrored += this.Commands_CommandErrored;
 
             // let's add a converter for a custom type and a name
-            var mathopcvt = new MathOperationConverter();
+            /*var mathopcvt = new MathOperationConverter();
             CommandsNextUtilities.RegisterConverter(mathopcvt);
-            CommandsNextUtilities.RegisterUserFriendlyTypeName<MathOperation>("operation");
+            CommandsNextUtilities.RegisterUserFriendlyTypeName<MathOperation>("operation");*/
 
             // up next, let's register our commands
             this.Commands.RegisterCommands<UngroupedCommands>();

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
@@ -43,7 +42,7 @@ namespace DiscordEvolved.Commands
             await ctx.RespondAsync($"{emoji} Hello, {member.Mention}!");
         }
 
-        [Command("sum"), Description("Sums all given numbers and returns said sum.")]
+        /*[Command("sum"), Description("Sums all given numbers and returns said sum.")]
         public async Task SumOfNumbers(CommandContext ctx, [Description("Integers to sum.")] params int[] args)
         {
             // note the params on the argument. It will indicate
@@ -59,9 +58,9 @@ namespace DiscordEvolved.Commands
 
             // and send it to the user
             await ctx.RespondAsync($"The sum of these numbers is {sum.ToString("#,##0")}");
-        }
+        }*/
 
-        // this command will use our custom type, for which have 
+        /*// this command will use our custom type, for which have 
         // registered a converter during initialization
         [Command("math"), Description("Does basic math.")]
         public async Task Math(CommandContext ctx, [Description("Operation to perform on the operands.")] MathOperation operation, [Description("First operand.")] double num1, [Description("Second operand.")] double num2)
@@ -92,7 +91,7 @@ namespace DiscordEvolved.Commands
 
             var emoji = DiscordEmoji.FromName(ctx.Client, ":1234:");
             await ctx.RespondAsync($"{emoji} The result is {result.ToString("#,##0.00")}");
-        }
+        }*/
     }
 }
 

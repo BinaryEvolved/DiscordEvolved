@@ -88,8 +88,6 @@
   <ItemGroup>
     <Compile Include="Commands\Exec.cs" />
     <Compile Include="Commands\Grouped.cs" />
-    <Compile Include="Commands\MathOperation.cs" />
-    <Compile Include="Commands\MathOperationConverter.cs" />
     <Compile Include="Commands\TextOutputs.cs" />
     <Compile Include="Commands\Ungrouped.cs" />
     <Compile Include="Narcissism.cs" />
