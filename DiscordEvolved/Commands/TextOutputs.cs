@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
@@ -46,6 +48,17 @@ namespace DiscordEvolved.Commands
             embed.Fields.Add(field1);
             embed.Fields.Add(field2);
             await ctx.RespondAsync("", false, embed);
+        }
+
+        [Command("uptime")]
+        [Description("Displays uptime for DiscordEvolved bot")]
+        public async Task Uptime(CommandContext ctx)
+        {
+            //Shows Typing Indicator
+            await ctx.TriggerTypingAsync();
+
+            var response = DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime();
+            await ctx.RespondAsync($"The bot as been running for {response.Days} Days, {response.Hours} Hours, {response.Minutes} Minutes, {response.Seconds} Seconds, and {response.Milliseconds} Milliseconds");
         }
     }
 }
