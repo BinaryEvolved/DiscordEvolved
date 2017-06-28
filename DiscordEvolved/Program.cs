@@ -75,6 +75,7 @@ namespace DiscordEvolved
             this.Commands.RegisterCommands<GroupedCommands>();
             this.Commands.RegisterCommands<ExecCommands>();
             this.Commands.RegisterCommands<TextOutputsCommands>();
+            this.Commands.RegisterCommands<BotOwnerCommands>();
 
             // finnaly, let's connect and log in
             await this.Client.ConnectAsync();

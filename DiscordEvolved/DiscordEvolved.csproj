@@ -86,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\BotOwnerCommands.cs" />
     <Compile Include="Commands\Exec.cs" />
     <Compile Include="Commands\Grouped.cs" />
     <Compile Include="Commands\TextOutputs.cs" />
