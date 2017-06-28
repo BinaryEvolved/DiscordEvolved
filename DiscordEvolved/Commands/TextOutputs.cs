@@ -10,7 +10,7 @@ namespace DiscordEvolved.Commands
 {
     class TextOutputsCommands
     {
-        private Narcissism config = new Narcissism();
+        private readonly Narcissism config = new Narcissism();
 
         [Command("help")]
         [Description("Information about the DiscordEvolved Bot")]
@@ -96,7 +96,7 @@ namespace DiscordEvolved.Commands
 
             //Checks Bot Owner Command Permissions (oCp)
             var oCp = noPerm;
-            if (ctx.Message.Author.Id == config.OwnerId)
+            if (ctx.Message.Author.Id == ctx.Client.CurrentApplication.Owner.Id)
                 oCp = check;
             var ownerCommands = new DiscordEmbedField
             {

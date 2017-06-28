@@ -9,6 +9,8 @@ namespace DiscordEvolved.Commands
 {
     class BotOwnerCommands
     {
+        private readonly Narcissism config = new Narcissism();
+
         [Command("shutdown")]
         [Description("Shutsdown DiscordEvolved Bot")]
         [Aliases("killself")]
@@ -16,7 +18,7 @@ namespace DiscordEvolved.Commands
         public async Task ShutdownBot(CommandContext ctx)
         {
             //If BinaryEvolved
-            if (ctx.Message.Author.Id == 145733156018978816)
+            if (ctx.Message.Author.Id == ctx.Client.CurrentApplication.Owner.Id)
             {
                 await ctx.Message.CreateReactionAsync(DiscordEmoji.FromName(ctx.Client, ":sob:"));
                 await ctx.Client.UpdateStatusAsync(new Game("Shutting Down.."), UserStatus.Invisible);
