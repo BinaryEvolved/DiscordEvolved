@@ -129,7 +129,8 @@ namespace DiscordEvolved.Commands
             {
                 Title = "DiscordEvolved",
                 Description =
-                    "The DiscordEvolved Bot is created by BinaryEvolved with the goal to create a best friend to use when managing your discord servers.",
+                    "The DiscordEvolved Bot is created by BinaryEvolved with the goal to create a best friend to use when managing your discord servers.\n" +
+                    "This bot uses the DiscordSharpPlus Library: https://github.com/NaamloosDT/DSharpPlus (Licensed under MIT)",
                 Color = 2162503
             };
 
@@ -143,7 +144,7 @@ namespace DiscordEvolved.Commands
             var field2 = new DiscordEmbedField
             {
                 Name = "GitHub",
-                Value = "Coming Soon",
+                Value = "https://github.com/BinaryEvolved/DiscordEvolved",
                 Inline = true
             };
 
