@@ -82,7 +82,7 @@ namespace DiscordEvolved.Commands
 
             //Checks Server Owner Permissions (sOp)
             var sOp = noPerm;
-            if (ctx.Message.Channel.Guild.Owner == ctx.Message.Author)
+            if (ctx.Message.Channel.Guild.Owner.Id == ctx.Message.Author.Id)
                 sOp = check;
             var guildOwner = new DiscordEmbedField
             {
