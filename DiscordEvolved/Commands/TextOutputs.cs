@@ -78,7 +78,7 @@ namespace DiscordEvolved.Commands
             {
                 Inline = false,
                 Name = "Public Commands",
-                Value = $"`{check}help` `{check}about` `{check}uptime` `{check}ping` `{soon}whois` `{soon}serverwhois`"
+                Value = $"`{check}help` `{check}about` `{check}uptime` `{check}ping` `{check}whois` `{soon}serverwhois`"
             };
 
             //Checks Server Owner Permissions (sOp)
