@@ -7,10 +7,8 @@ using DSharpPlus.CommandsNext.Attributes;
 
 namespace DiscordEvolved.Commands
 {
-    class BotOwnerCommands
+    internal class BotOwnerCommands
     {
-        private readonly Narcissism config = new Narcissism();
-
         [Command("shutdown")]
         [Description("Shutsdown DiscordEvolved Bot")]
         [Aliases("killself")]

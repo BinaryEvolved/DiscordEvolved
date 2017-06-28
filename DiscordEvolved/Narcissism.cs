@@ -8,13 +8,12 @@ namespace DiscordEvolved
     //This is where I stick annoying self pointing data because of static/non-static constraints
     public class Narcissism
     {
-        public string DiscordToken { get; private set; }
-        public ulong OwnerId { get; private set; }
+        public string DiscordToken { get; }
 
 
         public Narcissism()
         {
-            var json = "";
+            string json;
             using (var fs = File.OpenRead("config.json"))
             using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
                 json = sr.ReadToEnd();
@@ -23,7 +22,6 @@ namespace DiscordEvolved
             // to our client's configuration
             var cfgjson = JsonConvert.DeserializeObject<ConfigJson>(json);
             DiscordToken = cfgjson.Token;
-            OwnerId = cfgjson.OwnerId;
         }
 
 
@@ -33,8 +31,6 @@ namespace DiscordEvolved
             [JsonProperty("token")]
             public string Token { get; private set; }
 
-            [JsonProperty("OwnerID")]
-            public ulong OwnerId { get; private set; }
         }
     }
 }

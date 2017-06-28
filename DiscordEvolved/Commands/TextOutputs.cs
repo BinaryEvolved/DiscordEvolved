@@ -8,9 +8,8 @@ using DSharpPlus.CommandsNext.Attributes;
 
 namespace DiscordEvolved.Commands
 {
-    class TextOutputsCommands
+    internal class TextOutputsCommands
     {
-        private readonly Narcissism config = new Narcissism();
 
         [Command("help")]
         [Description("Information about the DiscordEvolved Bot")]

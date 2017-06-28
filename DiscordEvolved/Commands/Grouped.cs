@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
-using Microsoft.Win32;
 
 namespace DiscordEvolved.Commands
 {
@@ -11,7 +10,7 @@ namespace DiscordEvolved.Commands
     [Description("Administrative commands.")] // give it a description for help purposes
     [Hidden] // let's hide this from the eyes of curious users
     //[RequirePermissions(Permissions.ManageGuild)] // and restrict this to users who have appropriate permissions
-    class GroupedCommands
+    internal class GroupedCommands
     {
         
 
@@ -37,7 +36,7 @@ namespace DiscordEvolved.Commands
             }
 
             [Command("nick"), Description("Gives someone a new nickname."), RequirePermissions(Permissions.ManageNicknames)]
-            public async Task ChangeNickname(CommandContext ctx, [Description("Member to change the nickname for.")] DiscordMember member, [RemainingText, Description("The nickname to give to that user.")] string new_nickname)
+            public async Task ChangeNickname(CommandContext ctx, [Description("Member to change the nickname for.")] DiscordMember member, [RemainingText, Description("The nickname to give to that user.")] string newNickname)
             {
                 // let's trigger a typing indicator to let
                 // users know we're working
@@ -47,7 +46,7 @@ namespace DiscordEvolved.Commands
                 {
                     // let's change the nickname, and tell the 
                     // audit logs who did it.
-                    await member.ModifyAsync(new_nickname, reason: $"Changed by {ctx.User.Username} ({ctx.User.Id}).");
+                    await member.ModifyAsync(newNickname, reason: $"Changed by {ctx.User.Username} ({ctx.User.Id}).");
 
                     // let's make a simple response.
                     var emoji = DiscordEmoji.FromName(ctx.Client, ":+1:");

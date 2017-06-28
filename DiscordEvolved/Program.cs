@@ -15,7 +15,7 @@ namespace DiscordEvolved
         private DiscordClient Client { get; set; }
         private CommandsNextModule Commands { get; set; }
 
-        public static void Main(string[] args)
+        public static void Main()
         {
             // since we cannot make the entry method asynchronous,
             // let's pass the execution to asynchronous code
