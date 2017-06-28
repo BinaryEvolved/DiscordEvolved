@@ -73,7 +73,6 @@ namespace DiscordEvolved
             // up next, let's register our commands
             Commands.RegisterCommands<UngroupedCommands>();
             Commands.RegisterCommands<GroupedCommands>();
-            Commands.RegisterCommands<ExecCommands>();
             Commands.RegisterCommands<TextOutputsCommands>();
             Commands.RegisterCommands<BotOwnerCommands>();
 
