@@ -52,7 +52,9 @@ namespace DiscordEvolved
                 EnableDms = false,
 
                 // enable mentioning the bot as a command prefix
-                EnableMentionPrefix = true
+                EnableMentionPrefix = true,
+
+                EnableDefaultHelp = false
             };
 
             // and hook them up
