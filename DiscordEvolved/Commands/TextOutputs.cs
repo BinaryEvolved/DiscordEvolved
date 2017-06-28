@@ -69,15 +69,15 @@ namespace DiscordEvolved.Commands
             {
                 Inline = false,
                 Name = "Status Information:",
-                Value = $"{check}: Command Online and Ready | {x}: Command Unavailable\n" +
-                        $"{soon}: Coming Soon | {noPerm}: Invalid Permissions (for user {ctx.Message.Author.Username})"
+                Value = $"`{check}`: Command Online and Ready | `{x}`: Command Unavailable\n" +
+                        $"`{soon}`: Coming Soon | `{noPerm}`: Invalid Permissions (for user {ctx.Message.Author.Username})"
             };
 
             var publicCommands = new DiscordEmbedField
             {
                 Inline = false,
                 Name = "Public Commands",
-                Value = $"{check} `help` | {check} `about` | {check} `uptime` | {check} `ping`"
+                Value = $"`{check}help` `{check}about` `{check}uptime` `{check}ping` `{soon}whois` `{soon}serverwhois`"
             };
 
             //Checks Server Owner Permissions (sOp)
@@ -88,7 +88,7 @@ namespace DiscordEvolved.Commands
             {
                 Inline = false,
                 Name = "Server Owner Commands",
-                Value = $"{sOp} `leaveserver`"
+                Value = $"`{sOp}leaveserver`"
             };
 
 
@@ -100,7 +100,7 @@ namespace DiscordEvolved.Commands
             {
                 Inline = false,
                 Name = "Bot Owner Only Commands",
-                Value = $"{oCp} `shutdown` | {oCp} `disable` | {oCp} `enable`"
+                Value = $"`{oCp}shutdown` `{oCp}disable` `{oCp}enable`"
             };
 
 
