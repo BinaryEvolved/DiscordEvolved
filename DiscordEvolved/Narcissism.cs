@@ -10,7 +10,8 @@ namespace DiscordEvolved
     {
         public string DiscordToken { get; private set; }
 
-        public void LoadData()
+
+        public Narcissism()
         {
             var json = "";
             using (var fs = File.OpenRead("config.json"))

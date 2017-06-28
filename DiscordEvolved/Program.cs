@@ -23,8 +23,7 @@ namespace DiscordEvolved
 
         public async Task RunBotAsync()
         {
-            // Load config file
-            ApplicationInformation.LoadData();
+
             var cfg = new DiscordConfig
             {
                 Token = ApplicationInformation.DiscordToken,
