@@ -11,9 +11,9 @@ namespace DiscordEvolved
 {
     public class Program
     {
-        public readonly Narcissism ApplicationInformation = new Narcissism();
-        public DiscordClient Client { get; set; }
-        public CommandsNextModule Commands { get; set; }
+        private readonly Narcissism _applicationInformation = new Narcissism();
+        private DiscordClient Client { get; set; }
+        private CommandsNextModule Commands { get; set; }
 
         public static void Main(string[] args)
         {
@@ -23,11 +23,11 @@ namespace DiscordEvolved
             prog.RunBotAsync().GetAwaiter().GetResult();
         }
 
-        public async Task RunBotAsync()
+        private async Task RunBotAsync()
         {
             var cfg = new DiscordConfig
             {
-                Token = ApplicationInformation.DiscordToken,
+                Token = _applicationInformation.DiscordToken,
                 TokenType = TokenType.Bot,
                 AutoReconnect = true,
                 LogLevel = LogLevel.Info,
