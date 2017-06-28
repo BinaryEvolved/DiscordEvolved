@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using DiscordEvolved.Commands;
+using DiscordEvolved.Properties;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Exceptions;
@@ -9,9 +11,9 @@ namespace DiscordEvolved
 {
     public class Program
     {
+        public readonly Narcissism ApplicationInformation = new Narcissism();
         public DiscordClient Client { get; set; }
         public CommandsNextModule Commands { get; set; }
-        public readonly Narcissism ApplicationInformation = new Narcissism();
 
         public static void Main(string[] args)
         {
@@ -23,7 +25,6 @@ namespace DiscordEvolved
 
         public async Task RunBotAsync()
         {
-
             var cfg = new DiscordConfig
             {
                 Token = ApplicationInformation.DiscordToken,
@@ -34,18 +35,18 @@ namespace DiscordEvolved
             };
 
             // Init client
-            this.Client = new DiscordClient(cfg);
+            Client = new DiscordClient(cfg);
 
             // Issue event hooks to client
-            this.Client.Ready += this.Client_Ready;
-            this.Client.GuildAvailable += this.Client_GuildAvailable;
-            this.Client.ClientError += this.Client_ClientError;
+            Client.Ready += Client_Ready;
+            Client.GuildAvailable += Client_GuildAvailable;
+            Client.ClientError += Client_ClientError;
 
             // up next, let's set up our commands
             var ccfg = new CommandsNextConfiguration
             {
                 // let's use the string prefix defined in config.json
-                StringPrefix = Properties.Resources.CommandPrefix,
+                StringPrefix = Resources.CommandPrefix,
 
                 // enable responding in direct messages
                 EnableDms = false,
@@ -57,12 +58,12 @@ namespace DiscordEvolved
             };
 
             // and hook them up
-            this.Commands = this.Client.UseCommandsNext(ccfg);
+            Commands = Client.UseCommandsNext(ccfg);
 
             // let's hook some command events, so we know what's 
             // going on
-            this.Commands.CommandExecuted += this.Commands_CommandExecuted;
-            this.Commands.CommandErrored += this.Commands_CommandErrored;
+            Commands.CommandExecuted += Commands_CommandExecuted;
+            Commands.CommandErrored += Commands_CommandErrored;
 
             // let's add a converter for a custom type and a name
             /*var mathopcvt = new MathOperationConverter();
@@ -70,14 +71,14 @@ namespace DiscordEvolved
             CommandsNextUtilities.RegisterUserFriendlyTypeName<MathOperation>("operation");*/
 
             // up next, let's register our commands
-            this.Commands.RegisterCommands<UngroupedCommands>();
-            this.Commands.RegisterCommands<GroupedCommands>();
-            this.Commands.RegisterCommands<ExecCommands>();
-            this.Commands.RegisterCommands<TextOutputsCommands>();
-            this.Commands.RegisterCommands<BotOwnerCommands>();
+            Commands.RegisterCommands<UngroupedCommands>();
+            Commands.RegisterCommands<GroupedCommands>();
+            Commands.RegisterCommands<ExecCommands>();
+            Commands.RegisterCommands<TextOutputsCommands>();
+            Commands.RegisterCommands<BotOwnerCommands>();
 
             // finnaly, let's connect and log in
-            await this.Client.ConnectAsync();
+            await Client.ConnectAsync();
 
             // when the bot is running, try doing <prefix>help
             // to see the list of registered commands, and 
@@ -90,13 +91,15 @@ namespace DiscordEvolved
 
         private Task Client_Ready(ReadyEventArgs e)
         {
-            var CurrentVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+            var currentVersion = Assembly.GetEntryAssembly().GetName().Version;
             // let's log the fact that this event occured
-            e.Client.DebugLogger.LogMessage(LogLevel.Info, "DiscordEvolved", "Declaring Version Info (" + CurrentVersion + ")", DateTime.Now);
-            Client.UpdateStatusAsync(new Game(Properties.Resources.FullVersion), UserStatus.Online);
-            Console.Title = $"DiscordEvolved By BinaryEvolved | {Properties.Resources.VersionPrefix} {CurrentVersion}";
+            e.Client.DebugLogger.LogMessage(LogLevel.Info, "DiscordEvolved",
+                "Declaring Version Info (" + currentVersion + ")", DateTime.Now);
+            Client.UpdateStatusAsync(new Game(Resources.FullVersion), UserStatus.Online);
+            Console.Title = $@"DiscordEvolved By BinaryEvolved | {Resources.VersionPrefix} {currentVersion}";
 
-            e.Client.DebugLogger.LogMessage(LogLevel.Info, "DiscordEvolved", "Client is ready to process events.", DateTime.Now);
+            e.Client.DebugLogger.LogMessage(LogLevel.Info, "DiscordEvolved", "Client is ready to process events.",
+                DateTime.Now);
 
             // since this method is not async, let's return
             // a completed task, so that no additional work
@@ -108,7 +111,8 @@ namespace DiscordEvolved
         {
             // let's log the name of the guild that was just
             // sent to our client
-            e.Client.DebugLogger.LogMessage(LogLevel.Info, "DiscordEvolved", $"Guild available: {e.Guild.Name}", DateTime.Now);
+            e.Client.DebugLogger.LogMessage(LogLevel.Info, "DiscordEvolved", $"Guild available: {e.Guild.Name}",
+                DateTime.Now);
 
             // since this method is not async, let's return
             // a completed task, so that no additional work
@@ -120,7 +124,8 @@ namespace DiscordEvolved
         {
             // let's log the name of the guild that was just
             // sent to our client
-            e.Client.DebugLogger.LogMessage(LogLevel.Error, "DiscordEvolved", $"Exception occured: {e.Exception.GetType()}: {e.Exception.Message}", DateTime.Now);
+            e.Client.DebugLogger.LogMessage(LogLevel.Error, "DiscordEvolved",
+                $"Exception occured: {e.Exception.GetType()}: {e.Exception.Message}", DateTime.Now);
 
             // since this method is not async, let's return
             // a completed task, so that no additional work
@@ -132,7 +137,8 @@ namespace DiscordEvolved
         {
             // let's log the name of the guild that was just
             // sent to our client
-            e.Context.Client.DebugLogger.LogMessage(LogLevel.Info, "DiscordEvolved", $"{e.Context.User.Username} successfully executed '{e.Command.QualifiedName}'", DateTime.Now);
+            e.Context.Client.DebugLogger.LogMessage(LogLevel.Info, "DiscordEvolved",
+                $"{e.Context.User.Username} successfully executed '{e.Command.QualifiedName}'", DateTime.Now);
 
             // since this method is not async, let's return
             // a completed task, so that no additional work
@@ -144,11 +150,13 @@ namespace DiscordEvolved
         {
             // let's log the name of the guild that was just
             // sent to our client
-            e.Context.Client.DebugLogger.LogMessage(LogLevel.Error, "DiscordEvolved", $"{e.Context.User.Username} tried executing '{e.Command?.QualifiedName ?? "<unknown command>"}' but it errored: {e.Exception.GetType()}: {e.Exception.Message ?? "<no message>"}", DateTime.Now);
+            e.Context.Client.DebugLogger.LogMessage(LogLevel.Error, "DiscordEvolved",
+                $"{e.Context.User.Username} tried executing '{e.Command?.QualifiedName ?? "<unknown command>"}' but it errored: {e.Exception.GetType()}: {e.Exception.Message}",
+                DateTime.Now);
 
             // let's check if the error is a result of lack
             // of required permissions
-            if (e.Exception is ChecksFailedException ex)
+            if (e.Exception is ChecksFailedException)
             {
                 // yes, the user lacks required permissions, 
                 // let them know
@@ -166,6 +174,4 @@ namespace DiscordEvolved
             }
         }
     }
-
-    
 }
